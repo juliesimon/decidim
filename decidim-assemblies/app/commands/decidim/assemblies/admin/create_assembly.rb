@@ -24,7 +24,7 @@ module Decidim
           assembly = create_assembly
 
           create_assembly_users(assembly)
-          
+
           if assembly.persisted?
             broadcast(:ok, assembly)
           else
