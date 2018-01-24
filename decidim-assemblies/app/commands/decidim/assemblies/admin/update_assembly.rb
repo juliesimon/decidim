@@ -24,6 +24,7 @@ module Decidim
         def call
           return broadcast(:invalid) if form.invalid?
           update_assembly
+          update_assembly_users(@assembly)
 
           if @assembly.valid?
             broadcast(:ok, @assembly)
@@ -58,6 +59,7 @@ module Decidim
             short_description: form.short_description,
             scopes_enabled: form.scopes_enabled,
             scope: form.scope,
+            private_assembly: form.private_assembly,
             developer_group: form.developer_group,
             local_area: form.local_area,
             target: form.target,
@@ -66,6 +68,17 @@ module Decidim
             meta_scope: form.meta_scope,
             show_statistics: form.show_statistics
           }
+        end
+
+        def update_assembly_users(assembly)
+          assembly.assembly_users.delete_all
+          return unless form.private_assembly
+          form.users.each do |user|
+            AssemblyUser.create!(
+              assembly: assembly,
+              user: user
+            )
+          end
         end
       end
     end
