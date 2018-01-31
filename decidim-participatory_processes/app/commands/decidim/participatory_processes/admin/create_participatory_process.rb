@@ -23,8 +23,6 @@ module Decidim
           return broadcast(:invalid) if form.invalid?
           process = create_participatory_process
 
-          create_participatory_process_users(process)
-
           if process.persisted?
             broadcast(:ok, process)
           else
@@ -52,7 +50,7 @@ module Decidim
             promoted: form.promoted,
             scopes_enabled: form.scopes_enabled,
             scope: form.scope,
-            private_process: form.private_process,
+            private_space: form.private_space,
             developer_group: form.developer_group,
             local_area: form.local_area,
             target: form.target,
@@ -77,16 +75,6 @@ module Decidim
             )
 
             process
-          end
-        end
-
-        def create_participatory_process_users(process)
-          return unless form.private_process
-          form.users.each do |user|
-            ParticipatoryProcessUser.create!(
-              participatory_process: process,
-              user: user
-            )
           end
         end
       end

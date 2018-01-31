@@ -76,14 +76,6 @@
     </div>
 
     <div class="row column">
-      <%= form.check_box :private_assembly %>
-    </div>
-
-    <div class="row column">
-      <%= form.select :user_ids, options_for_select(assembly_users_for_select, selected: assembly_users_selected),  {}, { multiple: true, class: "chosen-select" } %>
-    </div>
-
-    <div class="row column">
       <%= form.translated :text_field, :participatory_scope %>
     </div>
 
@@ -91,6 +83,10 @@
       <%= form.translated :text_field, :participatory_structure %>
     </div>
 
+    <div class="row column">
+      <%= form.check_box :private_space %>
+    </div>
+    
     <div class="row column">
       <%= form.check_box :show_statistics %>
     </div>

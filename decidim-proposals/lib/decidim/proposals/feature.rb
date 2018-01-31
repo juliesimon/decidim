@@ -45,7 +45,16 @@ Decidim.register_feature(:proposals) do |feature|
   end
 
   feature.register_stat :proposals_count, primary: true, priority: Decidim::StatsRegistry::HIGH_PRIORITY do |features, start_at, end_at|
-    Decidim::Proposals::FilteredProposals.for(features, start_at, end_at).not_hidden.count
+    if features.is_a?(ActiveRecord::Relation)
+    features_public = features.where("(participatory_space_id in (
+                    #{Decidim::ParticipatoryProcess.where(private_space: false).ids.join(",")})
+                    and participatory_space_type = 'Decidim::ParticipatoryProcess') or (
+                    participatory_space_id in (#{Decidim::Assembly.where(private_space: false).ids.join(",")}) and
+                    participatory_space_type = 'Decidim::Assembly')")
+    else
+      features_public = features
+    end
+    Decidim::Proposals::FilteredProposals.for(features_public, start_at, end_at).not_hidden.count
   end
 
   feature.register_stat :proposals_accepted, primary: true, priority: Decidim::StatsRegistry::HIGH_PRIORITY do |features, start_at, end_at|

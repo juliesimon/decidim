@@ -32,7 +32,7 @@ module Decidim
         attribute :banner_image
         attribute :remove_banner_image
         attribute :show_statistics, Boolean
-        attribute :private_assembly, Boolean
+        attribute :private_space, Boolean
         attribute :user_ids, Integer
 
         validates :slug, presence: true, format: { with: Decidim::ParticipatoryProcess.slug_format }
