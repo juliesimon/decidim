@@ -33,6 +33,7 @@ module Decidim::ParticipatoryProcesses
         short_description: { en: "short_description" },
         current_organization: organization,
         scopes_enabled: true,
+        private_space: false,
         scope: scope,
         errors: errors,
         participatory_process_group: participatory_process_group
