@@ -33,7 +33,6 @@ module Decidim
         attribute :remove_banner_image
         attribute :show_statistics, Boolean
         attribute :private_space, Boolean
-        attribute :user_ids, Integer
 
         validates :slug, presence: true, format: { with: Decidim::ParticipatoryProcess.slug_format }
         validates :title, :subtitle, :description, :short_description, translatable_presence: true
@@ -50,10 +49,6 @@ module Decidim
 
         def scope
           @scope ||= current_organization.scopes.where(id: scope_id).first
-        end
-
-        def users
-          @users ||= current_organization.users.where(id: user_ids)
         end
 
         private
