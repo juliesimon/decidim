@@ -27,6 +27,7 @@ FactoryBot.define do
     participatory_scope { Decidim::Faker::Localized.sentence(1) }
     participatory_structure { Decidim::Faker::Localized.sentence(2) }
     show_statistics true
+    private_space false
     start_date { Time.current }
     end_date 2.months.from_now.at_midnight
 
@@ -139,6 +140,18 @@ FactoryBot.define do
              user: user,
              participatory_process: evaluator.participatory_process,
              role: :moderator
+    end
+  end
+
+  factory :private_user, parent: :user, class: "Decdim::User" do
+    transient do
+      participatory_process { create(:participatory_process) }
+    end
+
+    organization { participatory_process.organization }
+
+    after(:create) do |user, evaluator|
+      create :participatory_process_private_user, user: user, participatory_process: evaluator.participatory_process
     end
   end
 end

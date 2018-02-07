@@ -27,8 +27,7 @@ module Decidim
           return broadcast(:invalid) if form.invalid?
           ActiveRecord::Base.transaction do
             create_or_invite_user
-            create_role if form.class == Decidim::ParticipatoryProcesses::Admin::ParticipatoryProcessUserRoleForm
-            create_private_user if form.class == Decidim::ParticipatoryProcesses::Admin::ParticipatoryProcessPrivateUserForm
+            create_role
           end
 
           broadcast(:ok)
@@ -44,13 +43,6 @@ module Decidim
         def create_role
           Decidim::ParticipatoryProcessUserRole.find_or_create_by!(
             role: form.role.to_sym,
-            user: user,
-            participatory_process: @participatory_process
-          )
-        end
-
-        def create_private_user
-          Decidim::ParticipatoryProcessPrivateUser.find_or_create_by!(
             user: user,
             participatory_process: @participatory_process
           )
@@ -91,12 +83,8 @@ module Decidim
         end
 
         def invitation_instructions
-          if form.class == Decidim::ParticipatoryProcesses::Admin::ParticipatoryProcessUserRoleForm
-            return "invite_admin" if form.role == "admin"
-            "invite_collaborator"
-          else
-            "invite_private_user"
-          end
+          return "invite_admin" if form.role == "admin"
+          "invite_collaborator"
         end
       end
     end
