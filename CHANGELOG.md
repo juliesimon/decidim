@@ -3,7 +3,7 @@
 ## [Unreleased](https://github.com/decidim/decidim/tree/HEAD)
 
 **Added**:
-
+- **decidim**: Added private_space and private users to participatory_proccess and assembly. [\#2618](https://github.com/decidim/decidim/pull/2618)
 - **decidim-assemblies**: Assemblies now have a reference [\#2557](https://github.com/decidim/decidim/pull/2557)
 - **decidim-core**: Let participatory spaces have reference [\#2557](https://github.com/decidim/decidim/pull/2557)
 - **decidim-meetings**: Add simple formatting to debates fields to improve readability [\#2670](https://github.com/decidim/decidim/issues/2670)
