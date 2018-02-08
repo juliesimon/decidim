@@ -56,7 +56,9 @@ module Decidim
         authorize! :update, @feature
 
         UpdateFeature.call(@form, @feature) do
-          on(:ok) do
+          on(:ok) do |settings_changed, previous_settings, current_settings|
+            handle_feature_settings_change(previous_settings, current_settings) if settings_changed
+
             flash[:notice] = I18n.t("features.update.success", scope: "decidim.admin")
             redirect_to action: :index
           end
@@ -127,6 +129,10 @@ module Decidim
           "decidim.features.#{manifest.name}.name",
           current_organization.available_locales
         )
+      end
+
+      def handle_feature_settings_change(_previous_settings, _current_settings)
+        raise NotImplementedError
       end
     end
   end

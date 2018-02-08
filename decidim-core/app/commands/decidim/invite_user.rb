@@ -45,6 +45,7 @@ module Decidim
         admin: form.role == "admin",
         roles: form.role == "admin" ? [] : [form.role].compact
       )
+
       @user.invite!(
         form.invited_by,
         invitation_instructions: form.invitation_instructions

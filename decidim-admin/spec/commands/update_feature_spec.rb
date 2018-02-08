@@ -43,6 +43,7 @@ module Decidim::Admin
       let(:valid) { true }
 
       it "broadcasts :ok and updates the feature" do
+
         expect do
           described_class.call(form, feature)
         end.to broadcast(:ok)
