@@ -143,15 +143,8 @@ FactoryBot.define do
     end
   end
 
-  factory :participatory_process_private_user, parent: :user, class: "Decidim::User" do
-    transient do
-      participatory_process { create(:participatory_process) }
-    end
-
-    organization { participatory_process.organization }
-
-    after(:create) do |user, evaluator|
-      create :participatory_process_private_user, user: user, participatory_process: evaluator.participatory_process
-    end
+  factory :participatory_process_private_user, class: "Decidim::ParticipatoryProcessPrivateUser" do
+    user
+    participatory_process { create :participatory_process, organization: user.organization }
   end
 end
