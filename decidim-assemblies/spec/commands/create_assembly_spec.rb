@@ -31,7 +31,8 @@ module Decidim::Assemblies
         current_organization: organization,
         scopes_enabled: true,
         scope: scope,
-        errors: errors
+        errors: errors,
+        private_space: false
       )
     end
     let(:invalid) { false }
