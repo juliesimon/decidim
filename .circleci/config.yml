@@ -341,7 +341,6 @@ jobs:
       - restore_cache:
           keys:
             - bundler-dependencies-{{ checksum "Gemfile.lock" }}
-      - run: export CODECOV_FLAG=verifications
       - run:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -361,7 +360,6 @@ jobs:
       - restore_cache:
           keys:
             - bundler-dependencies-{{ checksum "Gemfile.lock" }}
-      - run: export CODECOV_FLAG=debates
       - run:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
