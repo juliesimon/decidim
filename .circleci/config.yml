@@ -380,11 +380,11 @@ workflows:
       - build_test_app:
           filters:
             branches:
-              ignore: /^l10n_master$/
+              ignore: l10n_master
       - main:
           filters:
             branches:
-              ignore: /^l10n_master$/
+              ignore: l10n_master
       - core:
           requires:
             - build_test_app
