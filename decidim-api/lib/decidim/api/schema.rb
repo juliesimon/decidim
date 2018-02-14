@@ -11,6 +11,8 @@ module Decidim
         return Decidim::UserType if obj.is_a? Decidim::User
         return Decidim::UserGroupType if obj.is_a? Decidim::UserGroup
       }
+
+      orphan_types Decidim.feature_manifests.map(&:api_type).map(&:constantize).uniq
     end
   end
 end

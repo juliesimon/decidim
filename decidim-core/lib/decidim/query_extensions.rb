@@ -11,13 +11,17 @@ module Decidim
     # Returns nothing.
     def self.extend!(type)
       type.define do
-        field :processes do
-          type !types[ProcessType]
-          description "Lists all processes."
-
-          resolve lambda { |_obj, _args, ctx|
-            ParticipatoryProcesses::OrganizationPublishedParticipatoryProcesses.new(ctx[:current_organization])
-          }
+        Decidim.participatory_space_manifests.each do |participatory_space_manifest|
+          field participatory_space_manifest.name do
+            type !types[participatory_space_manifest.api_type.constantize]
+            description "Lists all #{participatory_space_manifest.name}"
+  
+            resolve lambda { |_obj, _args, ctx|
+              participatory_space_manifest.model_class_name.constantize.public_spaces.where(
+                organization: ctx[:current_organization]
+              )
+            }
+          end
         end
 
         field :session do
