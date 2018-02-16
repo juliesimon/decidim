@@ -3,7 +3,8 @@
 ## [Unreleased](https://github.com/decidim/decidim/tree/HEAD)
 
 **Added**:
-
+- **decidim-assemblies**: Add a select field for assign an area to assemblies [\#2750](https://github.com/decidim/decidim/pull/2750)
+- **decidim-core**: Add Area and AreaType to Core [\#2750](https://github.com/decidim/decidim/pull/2750)
 - **decidim-assemblies**: Assemblies now have a reference [\#2557](https://github.com/decidim/decidim/pull/2557)
 - **decidim-core**: Let participatory spaces have reference [\#2557](https://github.com/decidim/decidim/pull/2557)
 - **decidim-meetings**: Add simple formatting to debates fields to improve readability [\#2670](https://github.com/decidim/decidim/issues/2670)
