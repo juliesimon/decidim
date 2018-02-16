@@ -9,7 +9,7 @@ module Decidim
     # type - A GraphQL::BaseType to extend.
     #
     # Returns nothing.
-    def self.extend!(type)
+    def self.define(type)
       Decidim.participatory_space_manifests.each do |participatory_space_manifest|
         type.field participatory_space_manifest.name do
           type !types[participatory_space_manifest.api_type.constantize]

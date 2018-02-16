@@ -9,21 +9,5 @@ module Decidim
     autoload :MutationType, "decidim/api/mutation_type"
     autoload :QueryType, "decidim/api/query_type"
     autoload :Schema, "decidim/api/schema"
-
-    def self.add_query_extension(module_name)
-      @query_extensions = query_extensions + [module_name]
-    end
-
-    def self.query_extensions
-      @query_extensions || []
-    end
-
-    def self.add_mutation_extension(module_name)
-      @mutation_extensions = mutation_extensions + [module_name]
-    end
-
-    def self.mutation_extensions
-      @mutation_extensions || []
-    end
   end
 end

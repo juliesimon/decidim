@@ -10,7 +10,7 @@ module Decidim
       # type - A GraphQL::BaseType to extend.
       #
       # Returns nothing.
-      def self.extend!(type)
+      def self.define(type)
         type.field :commentable, Decidim::Comments::CommentableMutationType do
           description "A commentable"
 
