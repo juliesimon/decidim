@@ -1,22 +1,15 @@
 # frozen_string_literal: true
+require_dependency "decidim/core/api/participatory_space_interface"
 
 module Decidim
   module Core
     module Api
       # This type represents a ParticipatoryProcess.
       ParticipatorySpaceType = GraphQL::ObjectType.define do
+        interfaces [ParticipatorySpaceInterface]
+       
         name "ParticipatorySpace"
         description "A participatory space"
-
-        field :id, !types.ID, "The Space unique ID"
-
-        field :features, types[FeatureInterface] do
-          resolve ->(participatory_space, _args, ctx) {
-            Decidim::Feature.where(
-              participatory_space: participatory_space
-            )
-          }
-        end
       end
     end
   end

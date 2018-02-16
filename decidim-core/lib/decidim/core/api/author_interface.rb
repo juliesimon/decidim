@@ -14,5 +14,10 @@ module Decidim
     field :badge, !types.String, "The author's badge icon"
 
     field :deleted, !types.Boolean, "Whether the author's account has been deleted or not"
+
+    resolve_type lambda { |_type, obj, _ctx|
+                   return Decidim::UserType if obj.is_a? Decidim::User
+                   return Decidim::UserGroupType if obj.is_a? Decidim::UserGroup
+                 }
   end
 end

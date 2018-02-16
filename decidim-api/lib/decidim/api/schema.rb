@@ -7,12 +7,16 @@ module Decidim
       query QueryType
       mutation MutationType
 
-      resolve_type lambda { |_type, obj, _ctx|
-        return Decidim::UserType if obj.is_a? Decidim::User
-        return Decidim::UserGroupType if obj.is_a? Decidim::UserGroup
-      }
+      default_max_page_size 50
+      max_depth 10
+      max_complexity 300
 
-      orphan_types Decidim.feature_manifests.map(&:api_type).map(&:constantize).uniq
+      orphan_types(
+        Decidim.feature_manifests.map(&:api_type).map(&:constantize).uniq +
+        Decidim.participatory_space_manifests.map(&:api_type).map(&:constantize).uniq
+      )
+
+      resolve_type ->(_type, _obj, _ctx) {}
     end
   end
 end
