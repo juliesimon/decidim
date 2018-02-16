@@ -3,10 +3,10 @@
 module Decidim
   module Proposals
     # This type represents a ParticipatoryProcess.
-    ProposalsFeatureType = GraphQL::ObjectType.define do
-      interfaces [Decidim::Core::Api::FeatureInterface]
+    ProposalsType = GraphQL::ObjectType.define do
+      interfaces [Decidim::Core::ComponentInterface]
 
-      name "ProposalsFeature"
+      name "Proposals"
       description "A proposals component of a participatory space."
 
       connection :proposals, ProposalType.connection_type do

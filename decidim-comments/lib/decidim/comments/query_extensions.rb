@@ -11,17 +11,15 @@ module Decidim
       #
       # Returns nothing.
       def self.extend!(type)
-        type.define do
-          field :commentable do
-            type !CommentableType
+        type.field :commentable do
+          type !CommentableType
 
-            argument :id, !types.String, "The commentable's ID"
-            argument :type, !types.String, "The commentable's class name. i.e. `Decidim::ParticipatoryProcess`"
+          argument :id, !types.String, "The commentable's ID"
+          argument :type, !types.String, "The commentable's class name. i.e. `Decidim::ParticipatoryProcess`"
 
-            resolve lambda { |_obj, args, _ctx|
-              args[:type].constantize.find(args[:id])
-            }
-          end
+          resolve lambda { |_obj, args, _ctx|
+            args[:type].constantize.find(args[:id])
+          }
         end
       end
     end

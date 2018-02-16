@@ -4,7 +4,7 @@ module Decidim
   module ParticipatoryProcesses
     # This type represents a ParticipatoryProcess.
     ParticipatoryProcessType = GraphQL::ObjectType.define do
-      interfaces [Decidim::Core::Api::ParticipatorySpaceInterface]
+      interfaces [Decidim::Core::ParticipatorySpaceInterface]
 
       name "ParticipatoryProcess"
       description "A participatory process"

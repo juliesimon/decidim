@@ -6,6 +6,10 @@ module Decidim
     MutationType = GraphQL::ObjectType.define do
       name "Mutation"
       description "The root mutation of this schema"
+
+      Api.mutation_extensions.each do |name|
+        name.constantize.extend!(self)
+      end
     end
   end
 end

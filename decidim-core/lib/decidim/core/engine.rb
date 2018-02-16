@@ -96,7 +96,7 @@ module Decidim
       end
 
       initializer "decidim.query_extensions" do
-        QueryExtensions.extend!(Decidim::Api::QueryType)
+        Decidim::Api.add_query_extension "Decidim::QueryExtensions"
       end
 
       initializer "decidim.i18n_exceptions" do

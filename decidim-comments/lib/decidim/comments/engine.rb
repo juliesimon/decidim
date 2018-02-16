@@ -24,11 +24,11 @@ module Decidim
       end
 
       initializer "decidim_comments.query_extensions" do
-        Comments::QueryExtensions.extend!(Decidim::Api::QueryType)
+        Decidim::Api.add_query_extension "Decidim::Comments::QueryExtensions"
       end
 
       initializer "decidim_comments.mutation_extensions" do
-        Comments::MutationExtensions.extend!(Decidim::Api::MutationType)
+        Decidim::Api.add_mutation_extension "Decidim::Comments::MutationExtensions"
       end
 
       initializer "decidim.stats" do

@@ -11,27 +11,25 @@ module Decidim
       #
       # Returns nothing.
       def self.extend!(type)
-        type.define do
-          field :commentable, Decidim::Comments::CommentableMutationType do
-            description "A commentable"
+        type.field :commentable, Decidim::Comments::CommentableMutationType do
+          description "A commentable"
 
-            argument :id, !types.String, "The commentable's ID"
-            argument :type, !types.String, "The commentable's class name. i.e. `Decidim::ParticipatoryProcess`"
+          argument :id, !types.String, "The commentable's ID"
+          argument :type, !types.String, "The commentable's class name. i.e. `Decidim::ParticipatoryProcess`"
 
-            resolve lambda { |_obj, args, _ctx|
-              args[:type].constantize.find(args[:id])
-            }
-          end
+          resolve lambda { |_obj, args, _ctx|
+            args[:type].constantize.find(args[:id])
+          }
+        end
 
-          field :comment, Decidim::Comments::CommentMutationType do
-            description "A comment"
+        type.field :comment, Decidim::Comments::CommentMutationType do
+          description "A comment"
 
-            argument :id, !types.ID, "The comment's id"
+          argument :id, !types.ID, "The comment's id"
 
-            resolve lambda { |_obj, args, _ctx|
-              Comment.find(args["id"])
-            }
-          end
+          resolve lambda { |_obj, args, _ctx|
+            Comment.find(args["id"])
+          }
         end
       end
     end
