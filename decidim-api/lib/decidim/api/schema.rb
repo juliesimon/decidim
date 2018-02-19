@@ -16,7 +16,7 @@ module Decidim
         Decidim.participatory_space_manifests.map(&:api_type).map(&:constantize).uniq
       )
 
-      resolve_type ->(_type, _obj, _ctx) {}
+      resolve_type ->(_type, _obj) {}
     end
   end
 end
