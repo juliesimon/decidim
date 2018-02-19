@@ -25,10 +25,10 @@ module Decidim
       end
 
       describe "process" do
-        let(:query) { "{ process { id } }" }
+        let(:query) { "{ participatoryProcess { id } }" }
 
         it "queries the original process" do
-          expect(response).to include("process" => { "id" => process.id.to_s })
+          expect(response).to include("participatoryProcess" => { "id" => process.id.to_s })
         end
       end
 
@@ -37,6 +37,14 @@ module Decidim
 
         it "returns its title" do
           expect(response["title"]["locales"]).to include(*process.title.keys)
+        end
+      end
+
+      describe "startDate" do
+        let(:query) { "{ startDate }" }
+
+        it "returns the step's start date" do
+          expect(response["startDate"]).to eq(model.start_date.to_date.iso8601)
         end
       end
     end

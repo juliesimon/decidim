@@ -16,6 +16,10 @@ module Decidim
       end
 
       field :title, !Decidim::Core::TranslatedFieldType, "The title of this step"
+
+      field :startDate, Decidim::Core::DateType, "This step's start date.", property: :start_date
+      
+      field :endDate, Decidim::Core::DateType, "This step's end date.", property: :end_date
     end
   end
 end
