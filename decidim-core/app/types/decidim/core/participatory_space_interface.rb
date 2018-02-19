@@ -15,7 +15,7 @@ module Decidim
         resolve ->(participatory_space, _args, _ctx) {
           Decidim::Feature.where(
             participatory_space: participatory_space
-          )
+          ).published
         }
       end
 

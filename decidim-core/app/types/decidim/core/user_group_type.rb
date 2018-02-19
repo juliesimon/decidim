@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require_dependency "decidim/core/author_interface"
 
 module Decidim
   module Core
@@ -9,7 +8,7 @@ module Decidim
       description "A user group"
 
       interfaces [
-        Decidim::Core::AuthorInterface
+        -> { Decidim::Core::AuthorInterface }
       ]
 
       field :id, !types.ID, "The user group's id"

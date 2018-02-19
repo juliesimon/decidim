@@ -8,6 +8,8 @@ module Decidim
 
       name "ParticipatoryProcess"
       description "A participatory process"
+
+      field :steps, !types[ParticipatoryProcessStepType], "All the steps of this process."
     end
   end
 end
