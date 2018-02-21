@@ -26,7 +26,7 @@ module Decidim
       def i18n_params
         super.merge(
           role: I18n.t("models.user.fields.roles.#{user_role}", scope: "decidim.admin"),
-          badge: h.translated_attribute(user_badge),
+          badge: h.translated_attribute(user_badge)
         )
       end
 
