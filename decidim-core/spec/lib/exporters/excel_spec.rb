@@ -9,6 +9,7 @@ module Decidim
 
     let(:serializer) do
       Class.new do
+        # rubocop:disable Lint/UnneededDisable RSpec/InstanceVariable
         def initialize(resource)
           @resource = resource
         end
@@ -22,7 +23,7 @@ module Decidim
             date: @resource.date
           }
         end
-        # rubocop:enable RSpec/InstanceVariable
+        # rubocop:enable Lint/UnneededDisable RSpec/InstanceVariable
       end
     end
 
